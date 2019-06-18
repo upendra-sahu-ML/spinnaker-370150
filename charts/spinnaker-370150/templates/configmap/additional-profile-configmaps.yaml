@@ -31,11 +31,6 @@ Render profiles for each service by merging predefined defaults with values pass
 {{- end -}}
 {{- end -}}
 
-{{- /* Merge dictionaries with passed values */}}
-{{- $customProfilesEnabled := .Values.halyard.additionalProfileConfigMaps.create | default true -}}
-{{- if and $customProfilesEnabled .Values.halyard.additionalProfileConfigMaps.data -}}
-{{- $_ := mergeOverwrite $profiles .Values.halyard.additionalProfileConfigMaps.data -}}
-{{- end -}}
 
 {{- /* Convert the content of profiles to string unless it's already a string */}}
 {{- range $filename, $content := $profiles -}}
